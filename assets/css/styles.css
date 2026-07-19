@@ -54,6 +54,7 @@ body.dark-mode {
 
 html {
   scroll-behavior: smooth;
+  font-family: var(--font-family);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -76,6 +77,8 @@ body {
   font-size: var(--fs-body);
   color: var(--color-text);
   background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 h1,
