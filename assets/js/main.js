@@ -109,11 +109,14 @@ function syncDarkModeIcon(isDark) {
   }
 }
 
-let savedMode = false;
+let savedMode = true;
 try {
-  savedMode = localStorage.getItem("dark-mode") === "enabled";
+  const stored = localStorage.getItem("dark-mode");
+  if (stored !== null) {
+    savedMode = stored === "enabled";
+  }
 } catch (err) {
-  savedMode = false;
+  savedMode = true;
 }
 
 if (savedMode) {
@@ -191,57 +194,67 @@ if (contactForm) {
 (function heroTyper() {
   const container = document.getElementById("hero-typed");
   if (!container) return;
-
   const cursor = document.querySelector(".hero-cursor");
+  container.innerHTML = "";
+  const hi = document.createElement("span");
+  hi.textContent = "Hi,";
+  container.appendChild(hi);
+  container.appendChild(document.createElement("br"));
+
+  const segments = [
+    { text: "I'm ", cls: null, br: false, animateCursor: false },
+    {
+      text: "Sumit",
+      cls: "home__title-color",
+      br: false,
+      animateCursor: false,
+    },
+    { text: "Front-End Dev", cls: null, br: true, animateCursor: true },
+  ];
+
+  let si = 0,
+    ci = 0,
+    span = null;
+
+  function tick() {
+    if (si >= segments.length) return;
+
+    const seg = segments[si];
+
+    if (ci === 0) {
+      if (seg.br) container.appendChild(document.createElement("br"));
+      span = document.createElement("span");
+      if (seg.cls) span.className = seg.cls;
+      container.appendChild(span);
+
+      cursor?.classList.toggle("hero-cursor--blink", !!seg.animateCursor);
+    }
+
+    if (ci < seg.text.length) {
+      span.textContent += seg.text[ci++];
+      setTimeout(tick, 80);
+    } else {
+      si++;
+      ci = 0;
+      setTimeout(tick, 80);
+    }
+  }
+
   const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)",
   ).matches;
 
-  const lines = [
-    "Sumit Sunar",
-    "Front-End Developer in Nepal",
-  ];
-
   if (prefersReducedMotion) {
-    container.innerHTML = lines
-      .map((line) => `<span>${line}</span>`)
-      .join("<br>");
-    cursor?.classList.add("hero-cursor--blink");
-    return;
+    segments.forEach((seg) => {
+      if (seg.br) container.appendChild(document.createElement("br"));
+      const s = document.createElement("span");
+      if (seg.cls) s.className = seg.cls;
+      s.textContent = seg.text;
+      container.appendChild(s);
+    });
+  } else {
+    setTimeout(tick, 350);
   }
-
-  const [firstLine, secondLine] = lines;
-  const firstSpan = container.querySelectorAll("span")[0];
-  const secondSpan = container.querySelectorAll("span")[1];
-
-  let charIndex = 0;
-  let lineIndex = 0;
-  let currentText = "";
-
-  function tick() {
-    const activeSpan = lineIndex === 0 ? firstSpan : secondSpan;
-    if (!activeSpan) return;
-
-    if (charIndex <= lines[lineIndex].length) {
-      activeSpan.textContent = lines[lineIndex].slice(0, charIndex);
-      charIndex += 1;
-      setTimeout(tick, 80);
-    } else {
-      lineIndex += 1;
-      charIndex = 0;
-
-      if (lineIndex < lines.length) {
-        setTimeout(tick, 180);
-      } else {
-        cursor?.classList.remove("hero-cursor--blink");
-      }
-    }
-  }
-
-  firstSpan.textContent = "";
-  secondSpan.textContent = "";
-  cursor?.classList.add("hero-cursor--blink");
-  setTimeout(tick, 350);
 })();
 
 const footerYear = $("footer-year");
