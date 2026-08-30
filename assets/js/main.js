@@ -109,14 +109,11 @@ function syncDarkModeIcon(isDark) {
   }
 }
 
-let savedMode = true;
+let savedMode = false;
 try {
-  const stored = localStorage.getItem("dark-mode");
-  if (stored !== null) {
-    savedMode = stored === "enabled";
-  }
+  savedMode = localStorage.getItem("dark-mode") === "enabled";
 } catch (err) {
-  savedMode = true;
+  savedMode = false;
 }
 
 if (savedMode) {
@@ -194,8 +191,10 @@ if (contactForm) {
 (function heroTyper() {
   const container = document.getElementById("hero-typed");
   if (!container) return;
+
   const cursor = document.querySelector(".hero-cursor");
   container.innerHTML = "";
+
   const hi = document.createElement("span");
   hi.textContent = "Hi,";
   container.appendChild(hi);
@@ -209,12 +208,12 @@ if (contactForm) {
       br: false,
       animateCursor: false,
     },
-    { text: "Front-End Dev", cls: null, br: true, animateCursor: true },
+    { text: "Front-End Developer", cls: null, br: true, animateCursor: true },
   ];
 
-  let si = 0,
-    ci = 0,
-    span = null;
+  let si = 0;
+  let ci = 0;
+  let span = null;
 
   function tick() {
     if (si >= segments.length) return;
@@ -222,7 +221,10 @@ if (contactForm) {
     const seg = segments[si];
 
     if (ci === 0) {
-      if (seg.br) container.appendChild(document.createElement("br"));
+      if (seg.br) {
+        container.appendChild(document.createElement("br"));
+      }
+
       span = document.createElement("span");
       if (seg.cls) span.className = seg.cls;
       container.appendChild(span);
@@ -231,10 +233,11 @@ if (contactForm) {
     }
 
     if (ci < seg.text.length) {
-      span.textContent += seg.text[ci++];
+      span.textContent += seg.text[ci];
+      ci += 1;
       setTimeout(tick, 80);
     } else {
-      si++;
+      si += 1;
       ci = 0;
       setTimeout(tick, 80);
     }
