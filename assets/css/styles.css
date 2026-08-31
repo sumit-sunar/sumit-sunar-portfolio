@@ -763,7 +763,7 @@ body.dark-mode .home__title {
   }
   .home__blob-img {
     width: 100%;
-    transform: translateY(7px);
+    transform: translateY(6px);
   }
 
   .home__data {
