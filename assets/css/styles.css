@@ -747,8 +747,8 @@ body.dark-mode .home__title {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
-    padding: 5rem 1rem 3rem;
+    gap: 1.25rem;
+    padding: 5.5rem 1rem 1.25rem;
   }
 
   .home__img {
@@ -760,6 +760,7 @@ body.dark-mode .home__title {
     width: min(85vw, 340px);
     margin: 0 auto;
     z-index: 1;
+    transform: translateY(-10px);
   }
   .home__blob-img {
     width: 100%;
