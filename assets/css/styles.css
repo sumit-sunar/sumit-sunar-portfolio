@@ -271,9 +271,14 @@ body.dark-mode .dark__mode {
     max-width: 280px;
     height: 100%;
     padding: 2rem 1.5rem;
-    background-color: var(--color-text);
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    box-shadow: -12px 0 20px rgba(14, 36, 49, 0.12);
     transition: right var(--transition-mid);
     overflow-y: auto;
+  }
+  body.dark-mode .nav__menu {
+    box-shadow: -12px 0 20px rgba(0, 0, 0, 0.35);
   }
   .nav__menu.show {
     right: 0;
@@ -294,7 +299,7 @@ body.dark-mode .dark__mode {
 
   .nav__link {
     display: block;
-    color: #fff;
+    color: var(--color-text);
     font-size: 1rem;
     padding: 0.5rem 0;
   }
@@ -304,10 +309,10 @@ body.dark-mode .dark__mode {
   }
 
   .nav__menu .dark__mode {
-    color: #fff;
+    color: var(--color-text);
   }
   .nav__menu .dark__mode:hover {
-    color: #ccc;
+    color: var(--color-primary);
   }
 }
 
