@@ -747,7 +747,7 @@ body.dark-mode .home__title {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 0.25rem;
     padding: 1rem 1rem 1.25rem;
   }
 
@@ -792,7 +792,7 @@ body.dark-mode .home__title {
     justify-content: center;
     align-items: center;
     gap: 1.25rem;
-    margin-bottom: var(--sp-4);
+    margin-bottom: var(--sp-2);
   }
   .home__social-icon {
     margin-bottom: 0;
