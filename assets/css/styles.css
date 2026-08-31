@@ -367,7 +367,7 @@ body.dark-mode .dark__mode {
 .home__social-icon {
   width: max-content;
   margin-bottom: var(--sp-2);
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   color: var(--color-text);
   /* Touch target */
   min-width: 44px;
@@ -776,6 +776,12 @@ body.dark-mode .home__title {
 
   .home__title {
     margin-bottom: var(--sp-4);
+    min-height: calc(var(--fs-hero) * 1.2 * 4);
+  }
+
+  #hero-typed .hero-title-mobile-break {
+    display: inline-block;
+    white-space: nowrap;
   }
 
   .home__social {

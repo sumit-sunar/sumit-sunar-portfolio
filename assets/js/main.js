@@ -208,7 +208,13 @@ if (contactForm) {
       br: false,
       animateCursor: false,
     },
-    { text: "Front-End Developer", cls: null, br: true, animateCursor: true },
+    { text: "Front-End ", cls: null, br: true, animateCursor: true },
+    {
+      text: "Developer",
+      cls: "hero-title-mobile-break",
+      br: true,
+      animateCursor: true,
+    },
   ];
 
   let si = 0;
