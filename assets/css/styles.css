@@ -358,7 +358,7 @@ body.dark-mode .dark__mode {
   margin-bottom: var(--sp-5);
   line-height: 1.2;
 
-  min-height: calc(var(--fs-hero) * 1.2 * 3.3);
+  min-height: calc(var(--fs-hero) * 1.2 * 4);
 }
 .home__title-color {
   color: var(--color-primary);
