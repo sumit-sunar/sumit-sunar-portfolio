@@ -109,17 +109,20 @@ function syncDarkModeIcon(isDark) {
   }
 }
 
-let savedMode = false;
+let savedMode = null;
 try {
-  savedMode = localStorage.getItem("dark-mode") === "enabled";
+  savedMode = localStorage.getItem("dark-mode");
 } catch (err) {
-  savedMode = false;
+  savedMode = null;
 }
 
-if (savedMode) {
+const isDark = savedMode !== "disabled";
+if (isDark) {
   document.body.classList.add("dark-mode");
+} else {
+  document.body.classList.remove("dark-mode");
 }
-syncDarkModeIcon(savedMode);
+syncDarkModeIcon(isDark);
 
 darkModeToggle?.addEventListener("click", (e) => {
   e.preventDefault();
